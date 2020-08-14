@@ -6,6 +6,7 @@ use App\Automovil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class AutomovilController extends Controller
 {
     /**
@@ -27,7 +28,8 @@ class AutomovilController extends Controller
      */
     public function store(Request $request)
     {
-        $automovil=DB::table('automovils')->where('id',$request->id)->first();
+        Automovil::create( $request->validated());
+        
     }
 
     /**
@@ -36,9 +38,9 @@ class AutomovilController extends Controller
      * @param  \App\Automovil  $automovil
      * @return \Illuminate\Http\Response
      */
-    public function show(Automovil $automovil)
+    public function show(Request $request)
     {
-        
+       return DB::table('automovils')->where('id',$request->id)->first();
     }
 
 
@@ -52,7 +54,13 @@ class AutomovilController extends Controller
      */
     public function update(Request $request, Automovil $automovil)
     {
-        //
+       if($proyect->update($request->validated()))
+       {
+           return "actualizado correctamente";
+       }
+       else{
+           return "sucedio un error";
+       }
     }
 
     /**
@@ -61,8 +69,9 @@ class AutomovilController extends Controller
      * @param  \App\Automovil  $automovil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Automovil $automovil)
+    public function destroy(Request $request)
     {
-        //
+        $automovil=DB::table('automovils')->where('id',$request->id)->first();
+        $automovil->delete();
     }
 }

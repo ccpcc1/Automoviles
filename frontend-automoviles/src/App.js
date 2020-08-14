@@ -1,26 +1,28 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Automoviles  from "./contenedores/automoviles";
+import detalleAutomovil from "./components/detalleAutomovil";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
     <Router>
       <div className="contaniner">
         <Switch>
-            <Route path="/automoviles/actualizar">
+            <Route exact  path="/automoviles/actualizar">
               
             </Route>
-            <Route path="/automoviles/editar">
+            <Route exact  path="/automoviles/editar">
 
             </Route>
-            <Route path="/automoviles/detalles">
+            <Route exact  path="/automoviles/detalles:id" component={detalleAutomovil}>
 
             </Route>
-            <Route path="/automoviles">
-            <Automoviles></Automoviles>
+            <Route exact  path="/automoviles" component={Automoviles}>
             </Route>
-            <Route path="/">
+            <Route exact  path="/">
             </Route>
+            <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
