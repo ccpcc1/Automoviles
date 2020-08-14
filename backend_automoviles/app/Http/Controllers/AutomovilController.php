@@ -15,7 +15,7 @@ class AutomovilController extends Controller
      */
     public function index()
     {
-        return DB::table('users')->get();
+        return DB::table('automovils')->get();
     }
 
 
@@ -27,7 +27,7 @@ class AutomovilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $automovil=DB::table('automovils')->where('id',$request->id)->first();
     }
 
     /**
@@ -38,7 +38,7 @@ class AutomovilController extends Controller
      */
     public function show(Automovil $automovil)
     {
-        //
+        
     }
 
 

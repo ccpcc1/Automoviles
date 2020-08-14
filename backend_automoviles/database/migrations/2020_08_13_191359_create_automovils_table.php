@@ -18,9 +18,10 @@ class CreateAutomovilsTable extends Migration
             $table->string('nombre');
             $table->integer('modelo');
             $table->integer('precio');
-            $table->timestamps();
+            $table->string('ruta_img');
             $table->text('descripcion_reparacion');
             $table->boolean('esta_reparado');
+            $table->timestamps();
         });
     }
 
