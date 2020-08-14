@@ -35,14 +35,18 @@ class Automoviles extends Component{
         })
     }
 
+    detalleAutomovil=(id)=>{
+        this.props.history.push(`${URI_BASE}/automoviles/detalle/${id}`)
+    }
+
     render(){
         const {automoviles
             ,error} = this.state;
-/*
+        
         if(error)
         {
         return <div>sucedio un error al llamar la aplicación: {error} </div>
-        } */   
+        }    
         return(
             <>
             <div className="container-fluid">
@@ -51,7 +55,7 @@ class Automoviles extends Component{
                 
                 <link to="/"></link>
                 {automoviles.map(({id,nombre,precio,modelo,esta_reparado }) => (
-                    <Automovil  key={id} nombre={nombre} precio={precio} modelo={modelo} esta_reparado={esta_reparado}></Automovil>
+                    <Automovil  key={id} nombre={nombre} precio={precio} modelo={modelo} esta_reparado={esta_reparado} evento={()=>this.detalleAutomovil(id)}></Automovil>
                 ))}
             </div>    
             </>

@@ -25,12 +25,13 @@ class detalleAutomovil extends Component
     {
         const { match: { params: { id } } } = this.props;
         axios.get(`${URI_BASE}/automoviles/${id}`)
-        .then(response => {
+        .then((response) => {
             this.setState({
                 automovil: response.data,
             })
+            console.log(response);
         })
-        .catch(error =>
+        .catch((error) =>
         {
             this.setState(
                 {
@@ -46,11 +47,16 @@ class detalleAutomovil extends Component
         .then(()=>this.props.history.push('/automoviles'))
           
     }
+    formularioActualizar=(id)=>
+    {
+        this.props.history.push(`${URI_BASE}/automoviles/actualizar/${id}`)
+    }
 
 
     render()
     {
         const {automovil,error} = this.state;
+        console.log(automovil);
         if(error)
         {
         return <div>sucedio un error al llamar la aplicacion: {error} </div>
@@ -62,8 +68,8 @@ class detalleAutomovil extends Component
                 <h5>Modelo: {automovil.modelo}</h5>
                 <h5>Precio: {automovil.precio}</h5>               
                 <h5>Estado: {(automovil.esta_reparado)?"esta reparado":"En reparación"}</h5>
-                <button className="btn-danger" onClick={()=>this.deleteEmploye(automovil.id)} >Eliminar</button>
-                <link className="btn btn-primary btn-Change" path="/automoviles/actualizar" >Modificar</link>
+                <button className="btn-danger" onClick={()=>this.deleteEmploye(automovil.id)}>Eliminar</button>
+                <button className="btn btn-primary btn-Change" onClick={()=> this.formularioActualizar(automovil.id)}> Modificar</button>
             </div>
         );
     }
